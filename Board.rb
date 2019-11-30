@@ -14,6 +14,7 @@ class Board
         @grid.each_with_index do |row,row_idx|
             row.each_with_index do |tile,col_idx|
                 return false if tile.bombed? == false && tile.revealed? == false
+                return false if tile.bombed? == true && tile.flagged == false
             end
         end
         true

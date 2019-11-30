@@ -33,7 +33,7 @@ class Minesweeper
     end
 
     def get_input
-        puts "Make a move ('r 1,3' to reveal at 1,3 or 'f' to flag"
+        puts "Make a move ('r 1,3' to reveal at 1,3 or 'f' to flag)"
         gets.chomp
     end
 
