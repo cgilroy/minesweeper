@@ -29,11 +29,23 @@ class Minesweeper
 
     def save_game
         # debugger
-        File.open("last_save.yml","w") { |file| file.write(@board.to_yaml) }
+        begin
+            File.open("last_save.yml","w") { |file| file.write(@board.to_yaml) }
+        rescue
+            system('clear')
+            "SAVE FAILED"
+            sleep(2)
+        end
     end
 
     def load_game
-        @board = YAML.load(File.read("last_save.yml"))
+        begin
+            @board = YAML.load(File.read("last_save.yml"))
+        rescue
+            system('clear')
+            puts 'LOAD FAILED'
+            sleep (2)
+        end
     end
 
     def game_over?
