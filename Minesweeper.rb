@@ -2,7 +2,7 @@ require_relative 'Board.rb'
 
 class Minesweeper
     def initialize
-        @board = Board.new(1,2)
+        @board = Board.new(6,9)
         @kaboom = false
         @defused = false
     end
