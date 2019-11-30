@@ -31,10 +31,15 @@ class Tile
     end
 
     def value
-        return "X" if @bombed
+        return "X".white.on_red if @bombed
         neighbours = self.neighbours(@board)
         bomb_count = neighbour_bomb_count(neighbours)
-        return bomb_count.to_s if bomb_count != 0
+        if bomb_count != 0
+            return bomb_count.to_s.blue if bomb_count == 1
+            return bomb_count.to_s.green if bomb_count == 2
+            return bomb_count.to_s.red if bomb_count == 3
+            return bomb_count.to_s.purple if bomb_count > 3
+        end
         "_"
     end
 

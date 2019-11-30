@@ -1,5 +1,5 @@
 require_relative 'Board.rb'
-
+require 'colorize'
 class Minesweeper
     def initialize
         @board = Board.new(6,9)
