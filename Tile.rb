@@ -56,7 +56,7 @@ class Tile
 
     def valid_pos?(pos)
         row,col = pos
-        return false unless row.between?(0,8) && col.between?(0,8)
+        return false unless row.between?(0,@board.size-1) && col.between?(0,@board.size-1)
         true
     end
 
