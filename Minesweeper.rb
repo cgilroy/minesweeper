@@ -2,7 +2,7 @@ require_relative 'Board.rb'
 
 class Minesweeper
     def initialize
-        @board = Board.new
+        @board = Board.new(6)
         @kaboom = false
         @defused = false
     end
@@ -15,6 +15,7 @@ class Minesweeper
             if validate_input(input)
                 self.make_move(self.process_input(input))
             end
+            system 'clear'
         end
 
     end
@@ -25,7 +26,10 @@ class Minesweeper
     end
 
     def make_move(move)
-        debugger
+        type, pos = move
+        if type == "r"
+            @board[pos].reveal
+        end
     end
 
     def process_input(input)

@@ -22,6 +22,10 @@ class Tile
         @bombed = true
     end
 
+    def reveal
+        @revealed = true
+    end
+
     def value
         return "X" if @bombed
         neighbours = self.neighbours(@board)
