@@ -60,8 +60,9 @@ class Tile
         true
     end
 
-    def display_str
-        return self.value if @revealed
+    def display_str(reveal_all = false)
+        # debugger
+        return self.value if @revealed || reveal_all
         return "F" if @flagged
         "*"
     end

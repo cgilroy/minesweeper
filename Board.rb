@@ -35,13 +35,13 @@ class Board
         # debugger
     end
 
-    def render
+    def render(reveal_all = false)
         col_str = " "
         (0..8).each { |col| col_str += " " + col.to_s }
         puts col_str
         (0..8).each do |row|
             row_str = row.to_s
-            (0..8).each { |col| row_str += " " + self[[row,col]].display_str }
+            (0..8).each { |col| row_str += " " + self[[row,col]].display_str(reveal_all) }
             puts row_str
         end
     end

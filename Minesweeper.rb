@@ -16,8 +16,16 @@ class Minesweeper
                 self.make_move(self.process_input(input))
             end
             system 'clear'
+            self.game_over?
         end
 
+    end
+
+    def game_over?
+        if @kaboom
+            @board.render(true)
+            puts 'GAME OVER'
+        end
     end
 
     def get_input
@@ -29,6 +37,7 @@ class Minesweeper
         type, pos = move
         if type == "r"
             @board[pos].reveal
+            @kaboom = true if @board[pos].bombed?
         elsif type == "f"
             @board[pos].flagged = !@board[pos].flagged
         end
