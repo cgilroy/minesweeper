@@ -1,5 +1,5 @@
 require_relative 'Board.rb'
-
+require 'yaml'
 class Minesweeper
     def initialize
         @board = Board.new(6,9)
@@ -10,15 +10,42 @@ class Minesweeper
     def play
         
         until @kaboom || @defused do
+            # debugger
             @board.render
             input = self.get_input
-            if validate_input(input)
+            if input == 'save'
+                self.save_game
+            elsif input == 'load'
+                self.load_game
+            else 
+                validate_input(input)
                 self.make_move(self.process_input(input))
             end
             system 'clear'
             self.game_over?
         end
 
+    end
+
+    def save_game
+        # debugger
+        begin
+            File.open("last_save.yml","w") { |file| file.write(@board.to_yaml) }
+        rescue
+            system('clear')
+            "SAVE FAILED"
+            sleep(2)
+        end
+    end
+
+    def load_game
+        begin
+            @board = YAML.load(File.read("last_save.yml"))
+        rescue
+            system('clear')
+            puts 'LOAD FAILED'
+            sleep (2)
+        end
     end
 
     def game_over?
@@ -34,6 +61,7 @@ class Minesweeper
 
     def get_input
         puts "Make a move ('r 1,3' to reveal at 1,3 or 'f' to flag)"
+        puts "Type 'save' at any time to save your game, or 'load' to restore your last game"
         gets.chomp
     end
 
