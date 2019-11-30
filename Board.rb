@@ -3,9 +3,10 @@ require('byebug')
 
 class Board
     attr_reader :grid
-    def initialize
+    def initialize(bomb_count)
         @grid = Array.new(9) { Array.new(9) { Tile.new(self) } }
         self.set_positions
+        self.place_bombs(bomb_count)
     end
 
     def set_positions
