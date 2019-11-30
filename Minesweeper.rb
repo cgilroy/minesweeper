@@ -57,7 +57,11 @@ class Minesweeper
         # debugger
         begin
             arr = input.split(" ")
+            arr[1] = arr[1].split(',').map(&:to_i)
             raise if !['r','f'].include?(arr[0])
+            raise if arr[1].length != 2
+            raise if !arr[1].is_a?(Array)
+            raise if arr[1].any? { |el| el > @board.size || el < 0 }
             true
         rescue
             puts "Please enter your move using valid syntax"
