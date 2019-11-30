@@ -29,6 +29,8 @@ class Minesweeper
         type, pos = move
         if type == "r"
             @board[pos].reveal
+        elsif type == "f"
+            @board[pos].flagged = !@board[pos].flagged
         end
     end
 
