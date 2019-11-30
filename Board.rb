@@ -45,8 +45,3 @@ class Board
         end
     end
 end
-
-x = Board.new
-x.place_bombs(6)
-x.set_positions
-x.render
