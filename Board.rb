@@ -10,6 +10,15 @@ class Board
         self.place_bombs(bomb_count)
     end
 
+    def all_defused?
+        @grid.each_with_index do |row,row_idx|
+            row.each_with_index do |tile,col_idx|
+                return false if tile.bombed? == false && tile.revealed? == false
+            end
+        end
+        true
+    end
+
     def set_positions
         @grid.each_with_index do |row,row_idx|
             row.each_with_index do |tile,col_idx|

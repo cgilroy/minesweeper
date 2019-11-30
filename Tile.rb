@@ -18,6 +18,10 @@ class Tile
         @bombed
     end
 
+    def revealed?
+        @revealed
+    end
+
     def bomb
         @bombed = true
     end

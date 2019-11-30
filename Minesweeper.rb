@@ -2,7 +2,7 @@ require_relative 'Board.rb'
 
 class Minesweeper
     def initialize
-        @board = Board.new(2,4)
+        @board = Board.new(1,2)
         @kaboom = false
         @defused = false
     end
@@ -25,9 +25,10 @@ class Minesweeper
         if @kaboom
             @board.render(true)
             puts 'GAME OVER'
-        elsif @defused
+        elsif @board.all_defused?
             @board.render
             puts "YOU WIN :)"
+            @defused = true
         end
     end
 
