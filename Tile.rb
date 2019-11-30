@@ -57,7 +57,7 @@ class Tile
     end
 
     def display_str
-        return self.value if !@revealed
+        return self.value if @revealed
         return "F" if @flagged
         "*"
     end
