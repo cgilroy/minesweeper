@@ -12,7 +12,7 @@ class Board
     end
 
     def place_bombs(count)
-        debugger
+        # debugger
         until count == 0 do
             pos = [rand(9),rand(9)]
             tile = self[pos]
@@ -22,7 +22,19 @@ class Board
             end
         end
     end
+
+    def render
+        col_str = " "
+        (0..8).each { |col| col_str += " " + col.to_s }
+        puts col_str
+        (0..8).each do |row|
+            row_str = row.to_s
+            (0..8).each { |col| row_str += " " + self[[row,col]].display_str }
+            puts row_str
+        end
+    end
 end
 
 x = Board.new
 x.place_bombs(6)
+x.render

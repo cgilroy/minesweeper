@@ -15,4 +15,8 @@ class Tile
         @bombed = true
     end
 
+    def display_str
+        return "*" if !@revealed
+    end
+
 end
