@@ -2,8 +2,18 @@ require_relative('Tile.rb')
 require('byebug')
 
 class Board
+    attr_reader :grid
     def initialize
-        @grid = Array.new(9) { Array.new(9) { Tile.new } }
+        @grid = Array.new(9) { Array.new(9) { Tile.new(self) } }
+        self.set_positions
+    end
+
+    def set_positions
+        @grid.each_with_index do |row,row_idx|
+            row.each_with_index do |tile,col_idx|
+                tile.pos = [row_idx,col_idx]
+            end
+        end
     end
 
     def [](pos)
@@ -12,7 +22,7 @@ class Board
     end
 
     def place_bombs(count)
-        # debugger
+        
         until count == 0 do
             pos = [rand(9),rand(9)]
             tile = self[pos]
@@ -21,6 +31,7 @@ class Board
                 count -= 1
             end
         end
+        # debugger
     end
 
     def render
@@ -37,4 +48,5 @@ end
 
 x = Board.new
 x.place_bombs(6)
+x.set_positions
 x.render
